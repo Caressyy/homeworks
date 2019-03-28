@@ -13,6 +13,6 @@ console.log(midlemark);
 
 let name;
 name = "Anna";
-let message = "Привет, мир! Меня зовут " + name;
+let message = `Привет, мир! Меня зовут ${name}`;
 console.log(message);
 
