@@ -1,3 +1,4 @@
+'use strict';
 
 
 function calculateQuadraticEquation(){
@@ -7,12 +8,28 @@ function calculateQuadraticEquation(){
     let result = getResult(a,b,c);
     window.equation.textContent = `${a}*x^2 + (${b})*x + (${c}) = 0`;
     let span = window.result;
-    span.textContent = "х = "+result;
+    span.textContent = "х = "+ result;
 }
 
 function getResult(a,b,c){
-    // код для задачи №1 писать здесь
-    //return x;
+    let d = Math.sqrt(b) - 4 * a * c;
+    let x = [];
+    if(d < 0) {
+        console.log(`Корней нет, дискриминант равен ${d}`);
+    }
+
+    else if(d === 0) {
+        x = -b / (2 * a);
+        console.log(`Корень 1, x = ${x}`);
+    }
+
+    else {
+        x[0] = (-b - Math.sqrt(d)) / (2 * a);
+        x[1] = (-b + Math.sqrt(d)) / (2 * a);
+        console.log(`Корня 2, x1 = ${x[0]} и х2 = ${x[1]}`);
+    }
+    
+    return x;
 }
 
 function calculateDrinkTask(){
@@ -23,18 +40,33 @@ function calculateDrinkTask(){
 }
 
 function askDrink(name,dateOfBirthday){
-    // код для задачи №2 писать здесь
-    //console.log(result)
-    //return result;
+    const nowYear = 2019;
+    let age = nowYear - dateOfBirthday.getFullYear();
+    let result = (age >= 18) ? `Не желаете ли олд-фэшн, ${name}?` : `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`;
+    console.log(result);
+    return result;
+    
 }
 
 function calculateAverageRating(){
-    let marks = window.marks.value.split("").map(Number);
+    let marks = window.marks.value.split("").map(Number).filter((n)=> !isNaN(n) && n > 0);
     let averageMark = getAverageMark(marks);
     window.averageMark.textContent = averageMark;
 }
 
 function getAverageMark(marks){
-    // код для задачи №3 писать здесь
-    //return averageMark;
+
+    let averageMark = 0;
+        for (let i = 0; i < marks.length; i++) {
+            if (marks.length <= 5) {
+            averageMark = averageMark + marks[i];            
+            }
+            else {
+                console.log("Введено больше 5 оценок")
+                for (let y = 0; y <= 4; y++)
+                averageMark = averageMark + marks[y];
+                return averageMark / 5;
+            }
+        }
+   return averageMark / marks.length;
 }
