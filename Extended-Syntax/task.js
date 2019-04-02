@@ -12,17 +12,15 @@ function calculateQuadraticEquation(){
 }
 
 function getResult(a,b,c){
-    let d = Math.sqrt(b) - 4 * a * c;
+    let d = (b * b) - 4 * a * c;
     let x = [];
     if(d < 0) {
         console.log(`Корней нет, дискриминант равен ${d}`);
     }
-
     else if(d === 0) {
         x = -b / (2 * a);
         console.log(`Корень 1, x = ${x}`);
     }
-
     else {
         x[0] = (-b - Math.sqrt(d)) / (2 * a);
         x[1] = (-b + Math.sqrt(d)) / (2 * a);
@@ -40,7 +38,8 @@ function calculateDrinkTask(){
 }
 
 function askDrink(name,dateOfBirthday){
-    const nowYear = 2019;
+    let nowDate = new Date();
+    let nowYear = nowDate.getFullYear();
     let age = nowYear - dateOfBirthday.getFullYear();
     let result = (age >= 18) ? `Не желаете ли олд-фэшн, ${name}?` : `Сожалею, ${name}, но я не могу вам продать алкоголь. Зато могу предложить вам замечательный клюквенный компот!`;
     console.log(result);
@@ -57,16 +56,12 @@ function calculateAverageRating(){
 function getAverageMark(marks){
 
     let averageMark = 0;
-        for (let i = 0; i < marks.length; i++) {
-            if (marks.length <= 5) {
-            averageMark = averageMark + marks[i];            
+        for (let i = 0; i < marks.length; i++) {      
+          if (marks.length > 5){
+            console.log("Введено больше 5 оценок")
+            marks.splice(5)
             }
-            else {
-                console.log("Введено больше 5 оценок")
-                for (let y = 0; y <= 4; y++)
-                averageMark = averageMark + marks[y];
-                return averageMark / 5;
-            }
+          averageMark = averageMark + marks[i];
         }
    return averageMark / marks.length;
 }
