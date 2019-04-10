@@ -82,18 +82,43 @@ function getAverageScore(data) {
   sum = sum / data.length;
   return sum;
 }
+function getTotalAverage(result) {
+  let average = []
+  for (key in result) {
+      average.push(result[key]);
+  }
+  average = getAverageScore(average);
+  return average;
+}
 
+function digitalJournal() {
+  let marks = {
+      algebra: [2, 4, 5, 2, 3, 4],
+      geometry: [2, 4, 5],
+      russian: [3, 3, 4, 5],
+      phycics: [5, 5],
+      music: [2, 2, 6],
+      english: [4, 4, 6],
+      poetry: [5, 3, 4],
+      chemestry: [2],
+      french: [4, 4]
+  };
+  let result = {}
+  for (key in marks) {
+      result[key] = getAverageScore(marks[key]);
+  }
+  result.average = getTotalAverage(result);
+  console.log(result);
+}
+
+digitalJournal();
+console.log(getAverageScore({ algebra: [2, 4, 5, 2, 3, 4],
+  geometry: [2, 4, 5],
+  russian: [3, 3, 4, 5],
+  phycics: [5, 5],
+  music: [2, 2, 6],
+  english: [4, 4, 6],
+  poetry: [5, 3, 4],
+  chemestry: [2],
+  french: [4, 4]}));
   
-//тест
-
-console.log(getAverageScore({
-    algebra: [2, 4, 5, 2, 3, 4],
-    geometry: [2, 4, 5],
-    russian: [3, 3, 4, 5],
-    physics: [5, 5],
-    music: [2, 2, 6],
-    english: [4, 4, 3],
-    poetry: [5, 3, 4],
-    chemistry: [2],
-    french: [4, 4],
-}));
